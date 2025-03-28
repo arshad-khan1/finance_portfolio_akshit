@@ -100,6 +100,15 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         </li>
         <li>
           <a 
+            href="#blog" 
+            className="text-white text-2xl hover:text-accent transition duration-300"
+            onClick={handleLinkClick}
+          >
+            Blog
+          </a>
+        </li>
+        <li>
+          <a 
             href="#contact" 
             className="text-white text-2xl hover:text-accent transition duration-300"
             onClick={handleLinkClick}

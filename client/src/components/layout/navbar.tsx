@@ -14,7 +14,7 @@ export default function Navbar({ scrolled, onMenuToggle }: NavbarProps) {
       }`}
     >
       <div className="text-2xl font-bold font-serif text-white">
-        <Link href="/#home">Alex Morgan</Link>
+        <Link href="/#home">Akshit Bakshi</Link>
       </div>
       
       <div className="hidden md:block">
@@ -42,6 +42,11 @@ export default function Navbar({ scrolled, onMenuToggle }: NavbarProps) {
           <li>
             <a href="#skills" className="nav-link text-white hover:text-accent transition duration-300">
               Skills
+            </a>
+          </li>
+          <li>
+            <a href="#blog" className="nav-link text-white hover:text-accent transition duration-300">
+              Blog
             </a>
           </li>
           <li>

@@ -38,3 +38,30 @@ export const contactMessageSchema = createInsertSchema(contactMessages).pick({
 
 export type ContactMessage = typeof contactMessages.$inferSelect;
 export type InsertContactMessage = z.infer<typeof contactMessageSchema>;
+
+// Blog posts schema
+export const blogPosts = pgTable("blog_posts", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  slug: text("slug").notNull().unique(),
+  excerpt: text("excerpt").notNull(),
+  content: text("content").notNull(),
+  category: text("category").notNull(),
+  coverImage: text("cover_image").notNull(),
+  published: boolean("published").default(true).notNull(),
+  publishedAt: timestamp("published_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const blogPostSchema = createInsertSchema(blogPosts).pick({
+  title: true,
+  slug: true,
+  excerpt: true,
+  content: true,
+  category: true,
+  coverImage: true,
+  published: true,
+});
+
+export type BlogPost = typeof blogPosts.$inferSelect;
+export type InsertBlogPost = z.infer<typeof blogPostSchema>;

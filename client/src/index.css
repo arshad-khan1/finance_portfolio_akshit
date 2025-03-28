@@ -56,6 +56,10 @@
 }
 
 @layer components {
+  .container {
+    @apply px-8 md:px-12 lg:px-16;
+  }
+  
   .section-fade-in {
     opacity: 0;
     transform: translateY(20px);
