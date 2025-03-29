@@ -62,11 +62,13 @@ const BlogSection = forwardRef<HTMLDivElement, Omit<BlogSectionProps, 'ref'>>((p
             {data.posts.map((post) => (
               <Card key={post.id} className="flex flex-col h-full hover:shadow-lg transition-shadow duration-300 overflow-hidden">
                 <div className="relative h-40 sm:h-44 md:h-48 w-full overflow-hidden">
-                  <img 
-                    src={post.coverImage} 
-                    alt={post.title} 
-                    className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
-                  />
+                  <a href={`/blog/${post.slug}`} className="block w-full h-full">
+                    <img 
+                      src={post.coverImage} 
+                      alt={post.title} 
+                      className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
+                    />
+                  </a>
                   <Badge className="absolute top-2 right-2 bg-accent text-xs md:text-sm">{post.category}</Badge>
                 </div>
                 <CardHeader className="pb-1 md:pb-2 pt-3 md:pt-4 px-3 md:px-5">
@@ -74,16 +76,22 @@ const BlogSection = forwardRef<HTMLDivElement, Omit<BlogSectionProps, 'ref'>>((p
                     <Calendar className="h-3 w-3 md:h-4 md:w-4 mr-1" />
                     <span>{formatDate(post.publishedAt)}</span>
                   </div>
-                  <CardTitle className="text-base md:text-lg lg:text-xl line-clamp-2">{post.title}</CardTitle>
+                  <CardTitle className="text-base md:text-lg lg:text-xl line-clamp-2">
+                    <a href={`/blog/${post.slug}`} className="hover:text-accent transition-colors duration-200">
+                      {post.title}
+                    </a>
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow py-2 px-3 md:px-5">
                   <CardDescription className="text-sm md:text-base line-clamp-3">{post.excerpt}</CardDescription>
                 </CardContent>
                 <CardFooter className="pt-0 pb-3 md:pb-4 px-3 md:px-5">
-                  <Button variant="ghost" size="sm" className="text-accent hover:text-accent-foreground px-2 md:px-3 h-8 md:h-9">
-                    <BookOpen className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
-                    <span className="text-xs md:text-sm">Read Article</span>
-                  </Button>
+                  <a href={`/blog/${post.slug}`}>
+                    <Button variant="ghost" size="sm" className="text-accent hover:text-accent-foreground px-2 md:px-3 h-8 md:h-9">
+                      <BookOpen className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
+                      <span className="text-xs md:text-sm">Read Article</span>
+                    </Button>
+                  </a>
                 </CardFooter>
               </Card>
             ))}

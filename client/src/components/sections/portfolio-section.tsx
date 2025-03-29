@@ -83,18 +83,24 @@ const PortfolioSection = forwardRef<HTMLDivElement, Omit<PortfolioSectionProps, 
           {projects.map((project) => (
             <div key={project.id} className="card bg-white rounded-lg shadow-md overflow-hidden">
               <div className="relative h-48">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover"
-                />
+                <a href={`/project/${project.id}`} className="block w-full h-full">
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover"
+                  />
+                </a>
                 <div className="absolute top-4 right-4 bg-accent text-primary px-2 py-1 rounded text-sm font-bold">
                   {project.category}
                 </div>
               </div>
               
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                <h3 className="text-xl font-bold mb-2">
+                  <a href={`/project/${project.id}`} className="hover:text-accent transition-colors duration-200">
+                    {project.title}
+                  </a>
+                </h3>
                 <p className="text-gray-700 mb-4">{project.description}</p>
                 
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -106,7 +112,7 @@ const PortfolioSection = forwardRef<HTMLDivElement, Omit<PortfolioSectionProps, 
                 </div>
                 
                 <a 
-                  href={project.link} 
+                  href={`/project/${project.id}`}
                   className="inline-block text-accent hover:underline font-semibold flex items-center"
                 >
                   View Project <ArrowRight className="ml-1 h-4 w-4" />
