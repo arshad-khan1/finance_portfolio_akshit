@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
-            <h3 className="text-2xl font-serif font-bold">Alex Morgan</h3>
+            <h3 className="text-2xl font-serif font-bold">Akshit Bakshi</h3>
             <p className="text-gray-400">MBA Finance Professional</p>
           </div>
           
@@ -55,7 +55,7 @@ export default function Footer() {
         <hr className="border-gray-800 my-8" />
         
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm mb-4 md:mb-0">© 2023 Alex Morgan. All rights reserved.</p>
+          <p className="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Akshit Bakshi. All rights reserved.</p>
           
           <div className="flex space-x-6 text-sm text-gray-400">
             <a href="#" className="hover:text-accent transition duration-300">Privacy Policy</a>

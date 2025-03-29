@@ -46,8 +46,7 @@ export default function HeroSection() {
               </a>
               <a href="#portfolio">
                 <Button 
-                  variant="outline" 
-                  className="border-2 border-white hover:border-accent hover:text-accent text-white font-bold py-3 px-8 rounded-md transition duration-300"
+                  className="bg-white text-primary hover:bg-accent hover:text-white font-bold py-3 px-8 rounded-md shadow-lg transition duration-300 transform hover:scale-105"
                 >
                   View Portfolio
                 </Button>
@@ -58,7 +57,7 @@ export default function HeroSection() {
           <div className="md:w-2/5 mt-12 md:mt-0 flex justify-center">
             <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-accent shadow-xl">
               <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" 
+                src="/assets/akshit_profile_photo.jpeg" 
                 alt="Akshit Bakshi" 
                 className="w-full h-full object-cover"
               />
