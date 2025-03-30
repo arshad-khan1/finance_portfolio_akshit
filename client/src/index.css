@@ -39,11 +39,11 @@
   }
 
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
 
   body {
-    @apply antialiased bg-background text-foreground font-sans;
+    @apply antialiased bg-white text-black font-sans;
   }
   
   .font-serif {
