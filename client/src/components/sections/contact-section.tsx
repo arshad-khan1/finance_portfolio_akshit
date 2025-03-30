@@ -2,9 +2,7 @@ import { forwardRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useMutation } from '@tanstack/react-query';
 import { Mail, Phone, MapPin, Linkedin, FileText } from 'lucide-react';
-import { apiRequest } from '@/lib/queryClient';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -28,6 +26,7 @@ interface ContactSectionProps {
 
 const ContactSection = forwardRef<HTMLDivElement, Omit<ContactSectionProps, 'ref'>>((props, ref) => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -40,28 +39,18 @@ const ContactSection = forwardRef<HTMLDivElement, Omit<ContactSectionProps, 'ref
     }
   });
 
-  const mutation = useMutation({
-    mutationFn: (data: FormValues) => {
-      return apiRequest("POST", "/api/contact", data);
-    },
-    onSuccess: () => {
+  const onSubmit = (data: FormValues) => {
+    setIsSubmitting(true);
+    
+    // Simulate API call
+    setTimeout(() => {
       toast({
         title: "Message sent!",
         description: "Thank you for your message. I will respond shortly.",
       });
       form.reset();
-    },
-    onError: (error) => {
-      toast({
-        title: "Error",
-        description: "There was a problem sending your message. Please try again.",
-        variant: "destructive"
-      });
-    }
-  });
-
-  const onSubmit = (data: FormValues) => {
-    mutation.mutate(data);
+      setIsSubmitting(false);
+    }, 1000);
   };
 
   return (
@@ -231,9 +220,9 @@ const ContactSection = forwardRef<HTMLDivElement, Omit<ContactSectionProps, 'ref
                   <Button 
                     type="submit" 
                     className="w-full bg-accent hover:bg-opacity-90 text-primary font-bold py-3 px-4 rounded-md shadow transition duration-300 transform hover:scale-105"
-                    disabled={mutation.isPending}
+                    disabled={isSubmitting}
                   >
-                    {mutation.isPending ? "Sending..." : "Send Message"}
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </Form>

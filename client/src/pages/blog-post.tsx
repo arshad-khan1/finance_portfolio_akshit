@@ -1,37 +1,14 @@
-import { useState, useEffect } from 'react';
 import { Link, useRoute } from 'wouter';
-import { useQuery } from '@tanstack/react-query';
-import { getQueryFn } from '@/lib/queryClient';
-import { ArrowLeft, Calendar, User, Clock, Share2, BookmarkIcon } from 'lucide-react';
+import { ArrowLeft, Calendar, User, Clock, BookmarkIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
-import { Skeleton } from '@/components/ui/skeleton';
 import { motion } from 'framer-motion';
-
-interface BlogPost {
-  id: number;
-  title: string;
-  slug: string;
-  excerpt: string;
-  content: string;
-  category: string;
-  coverImage: string;
-  published: boolean;
-  publishedAt: string;
-  updatedAt: string;
-}
+import { blogPosts } from '@/data/blog-posts';
 
 export default function BlogPostDetail() {
   const [, params] = useRoute('/blog/:slug');
   const slug = params?.slug || '';
-
-  // Fetch blog post
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['/api/blog/posts', slug],
-    queryFn: getQueryFn<{ success: boolean; post: BlogPost }>({ on401: 'returnNull' }),
-    enabled: !!slug,
-  });
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -46,24 +23,10 @@ export default function BlogPostDetail() {
     return readingTime;
   };
 
-  if (isLoading) {
-    return (
-      <div className="container mx-auto py-12">
-        <Skeleton className="h-8 w-32 mb-8" />
-        <Skeleton className="h-64 w-full mb-8" />
-        <Skeleton className="h-12 w-3/4 mb-4" />
-        <Skeleton className="h-6 w-48 mb-8" />
-        <div className="space-y-4">
-          <Skeleton className="h-6 w-full" />
-          <Skeleton className="h-6 w-full" />
-          <Skeleton className="h-6 w-full" />
-          <Skeleton className="h-6 w-3/4" />
-        </div>
-      </div>
-    );
-  }
+  // Find post by slug
+  const post = blogPosts.find(post => post.slug === slug);
 
-  if (error || !data?.post) {
+  if (!post) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -76,7 +39,6 @@ export default function BlogPostDetail() {
     );
   }
 
-  const post = data.post;
   const readingTime = calculateReadingTime(post.content);
 
   return (
