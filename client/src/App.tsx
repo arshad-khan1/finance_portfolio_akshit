@@ -1,10 +1,10 @@
 import { Switch, Route } from "wouter";
-import { Toaster } from "@/components/ui/toaster";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import BlogPost from "@/pages/blog-post";
 import Project from "@/pages/project";
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import { Toaster } from "./components/ui/toaster";
 
 function Router() {
   return (
